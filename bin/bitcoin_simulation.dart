@@ -77,6 +77,6 @@ CAmount modifiedGetBlockSubsidy(int nHeight, Params consensusParams) {
   nSubsidy /= pow(2, halvings);
 
   return nSubsidy >= 1
-      ? BigInt.from(nSubsidy.floor())
-      : BigInt.from(nSubsidy.ceil());
+      ? CAmount.from(nSubsidy.floor())
+      : CAmount.from(nSubsidy.ceil());
 }
