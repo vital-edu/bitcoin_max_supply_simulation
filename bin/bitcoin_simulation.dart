@@ -11,7 +11,7 @@ typedef BlockSubsidyFunction = CAmount Function(int, Params);
 /// This programm will simulate the max number of bitcoin that will be mined
 /// by the Bitcoin Network.
 ///
-/// Excute with `new` as the first argument to run the a modified algorithm that
+/// Excute with `new` as the first argument to run a modified algorithm that
 /// would produce exactly 21 millions of satoshis:
 /// ```shell
 /// dart bin/bitcoin_simulation.dart new
