@@ -1,5 +1,5 @@
-name: bitcoin_halving
-description: Bitcoin experiments
+name: bitcoin_simulation
+description: Bitcoin max supply simulatiion
 version: 1.0.0
 
 environment:

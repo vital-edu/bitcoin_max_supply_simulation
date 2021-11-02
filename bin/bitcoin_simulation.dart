@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:bitcoin_halving/chain_params.dart';
-import 'package:bitcoin_halving/consensus/params.dart';
+import 'package:bitcoin_simulation/chain_params.dart';
+import 'package:bitcoin_simulation/consensus/params.dart';
 import 'package:intl/intl.dart';
-import 'package:bitcoin_halving/validation.dart';
-import 'package:bitcoin_halving/consensus/amount.dart';
+import 'package:bitcoin_simulation/validation.dart';
+import 'package:bitcoin_simulation/consensus/amount.dart';
 
 typedef BlockSubsidyFunction = CAmount Function(int, Params);
 
