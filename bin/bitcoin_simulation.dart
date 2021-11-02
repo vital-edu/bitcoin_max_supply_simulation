@@ -28,15 +28,16 @@ int main(List<String> args) {
       ? modifiedGetBlockSubsidy
       : getBlockSubsidy;
 
-  int satoshis = 0;
+  CAmount satoshis = CAmount.zero;
   int blocksMined = 0;
   final Params consensusParams = CMainParams().consensus;
 
   while (satoshis < MAX_MONEY) {
     CAmount subsidy = blockSubsidy(blocksMined, consensusParams);
 
-    if (subsidy == 0) break;
-    satoshis += (subsidy * consensusParams.nSubsidyHalvingInterval);
+    if (subsidy == CAmount.zero) break;
+    satoshis +=
+        (subsidy * CAmount.from(consensusParams.nSubsidyHalvingInterval));
     blocksMined += consensusParams.nSubsidyHalvingInterval;
   }
 
@@ -69,11 +70,13 @@ int approximateYearOfMinedBlock(int blocksMined) {
 CAmount modifiedGetBlockSubsidy(int nHeight, Params consensusParams) {
   int halvings = nHeight ~/ consensusParams.nSubsidyHalvingInterval;
   // Force block reward to zero when right shift is undefined.
-  if (halvings >= 64) return 0;
+  if (halvings >= 64) return CAmount.zero;
 
-  double nSubsidy = 50.0 * COIN;
+  double nSubsidy = 50.0 * COIN.toInt();
   // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
   nSubsidy /= pow(2, halvings);
 
-  return nSubsidy >= 1 ? nSubsidy.floor() : nSubsidy.ceil();
+  return nSubsidy >= 1
+      ? BigInt.from(nSubsidy.floor())
+      : BigInt.from(nSubsidy.ceil());
 }
