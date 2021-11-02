@@ -41,11 +41,14 @@ int main(List<String> args) {
     blocksMined += consensusParams.nSubsidyHalvingInterval;
   }
 
+  final lastSubsidizedBlock = blocksMined - 1;
   final btc = satoshis / COIN;
-  final maxHalvings = blocksMined ~/ consensusParams.nSubsidyHalvingInterval;
-  final lastSubsidizedBlockMinedAt = approximateYearOfMinedBlock(blocksMined);
+  final maxHalvings =
+      lastSubsidizedBlock ~/ consensusParams.nSubsidyHalvingInterval;
+  final lastSubsidizedBlockMinedAt =
+      approximateYearOfMinedBlock(lastSubsidizedBlock);
 
-  print('First block without subsidy: $blocksMined');
+  print('Last subsidized block: $lastSubsidizedBlock');
   print('Last subsidized block mined on the year: $lastSubsidizedBlockMinedAt');
   print('Max quantity of satoshis to be created: ${satoshis.toInt()}');
   print('Max quantity of BTC to be created: ${btc.toStringAsFixed(8)}');
